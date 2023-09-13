@@ -254,15 +254,46 @@ const movies = [{
 /* ESERCIZIO 9 (forEach)
   Scrivi una funzione per trovare il film più vecchio nell'array fornito.
 */
-
+//  come l'ho fatto io
 const olderfilm = () => {
-  movies.forEach()
+  let filmage = 0
+  let winproperty = ""
+  movies.forEach( (n) => {
+if (n.Year > filmage) {
+  filmage = n.Year 
+  winproperty = n.Title
 }
+  })
+  return `Il film più vecchio è ${winproperty} dell'anno ${filmage}`
+}
+console.log(olderfilm())
+
+// come andrebbe fatto
+const oldestMovie = (array) => {
+  let result = { Year: 2100 }
+  array.forEach((movie) => {
+    let currentYear = parseInt(movie.Year)
+    if (currentYear < result.Year) {
+      result = movie
+    }
+  })
+
+  return result
+}
+
+console.log(oldestMovie(movies))
 
 
 /* ESERCIZIO 10
   Scrivi una funzione per ottenere il numero di film contenuti nell'array fornito.
 */
+
+const numberoffilms = (n) => {
+  let hhh = n.length
+  return hhh
+}
+console.log(numberoffilms(movies))
+
 
 /* ESERCIZIO 11 (map)
   Scrivi una funzione per creare un array con solamente i titoli dei film contenuti nell'array fornito.
