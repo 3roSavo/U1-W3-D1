@@ -45,15 +45,15 @@ console.log(calc)
 
 // questo è come l'avrei risolto io
 
-let arr = [12,58,33,21,5]
+let arr = [12, 58, 33, 21, 5]
 let somma = 0
 
 let ddd = () => {
 
-arr.forEach( (n) => {
-  somma = somma + n
-})
-return somma
+  arr.forEach((n) => {
+    somma = somma + n
+  })
+  return somma
 }
 console.log(ddd())
 
@@ -61,14 +61,14 @@ console.log(ddd())
 
 let sum = 0;
 
-let fun = (arrey) => {
-  arrey.forEach( (e) => {
+let fun = (array) => {
+  array.forEach((e) => {
     sum += e
   })
   return sum
 }
 
-console.log(fun([1,5,21,38,12]))
+console.log(fun([1, 5, 21, 38, 12]))
 
 
 /* ESERCIZIO 5 (reduce)
@@ -76,34 +76,33 @@ console.log(fun([1,5,21,38,12]))
 */
 
 // ---------------- esecuzione mia
-const array = [5,18,2,20]
+const array = [5, 18, 2, 20]
 
-const somma1 = array.reduce( (n1,n2) => {
+const somma1 = array.reduce((n1, n2) => {
   return n1 + n2
-}
-)
+})
 console.log(somma1)
 // -----------------------esecuzione solutions
 
 const somma2 = (input) => {
-  return input.reduce((n1,n2) => 
-    n1 + n2 , 0
+  return input.reduce((n1, n2) =>
+    n1 + n2, 0
   )
 }
 
-console.log(somma2([5,18,2,20]))
+console.log(somma2([5, 18, 2, 20]))
 
 /* ESERCIZIO 6 (map)
   Scrivi una funzione che, dato un array di soli numeri e un numero n come parametri, ritorni un secondo array con tutti i valori del precedente incrementati di n
 */
 
 const fff = (n) => {
-  return n.map( (h) => 
-     h + 5
-   )
+  return n.map((h) =>
+    h + 5
+  )
 }
 
-console.log(fff([12,76,14,34]))
+console.log(fff([12, 76, 14, 34]))
 
 /* ESERCIZIO 7 (map)
   Scrivi una funzione che, dato un array di stringhe, ritorni un nuovo array contenente le lunghezze delle rispettive stringhe dell'array di partenza
@@ -112,7 +111,7 @@ console.log(fff([12,76,14,34]))
 
 const array1 = ["ciao", "telefono", "gru", "cammello"]
 
-const count = array1.map( (n) => 
+const count = array1.map((n) =>
   n.length
 )
 
@@ -120,11 +119,11 @@ console.log(count)
 // oppure -------------------------------------------------
 
 const lala = (n) => {
-  return n.map( (s) => s.length)
+  return n.map((s) => s.length)
 }
 
 
-console.log(lala(["buongiorno", "bel", "licantropo", "gnu","peste"]))
+console.log(lala(["buongiorno", "bel", "licantropo", "gnu", "peste"]))
 
 /* ESERCIZIO 8 (forEach o for)
   Scrivi una funzione per creare un array contenente tutti i valori DISPARI da 1 a 99.
@@ -132,7 +131,7 @@ console.log(lala(["buongiorno", "bel", "licantropo", "gnu","peste"]))
 
 const operation = () => {
   const array5 = []
-  for (let i=0; i < 100; i++) {
+  for (let i = 0; i < 100; i++) {
     if (i % 2 !== 0) {
       array5.unshift(i)
     }
@@ -258,11 +257,11 @@ const movies = [{
 const olderfilm = () => {
   let filmage = 0
   let winproperty = ""
-  movies.forEach( (n) => {
-if (n.Year > filmage) {
-  filmage = n.Year 
-  winproperty = n.Title
-}
+  movies.forEach((n) => {
+    if (n.Year > filmage) {
+      filmage = n.Year
+      winproperty = n.Title
+    }
   })
   return `Il film più vecchio è ${winproperty} dell'anno ${filmage}`
 }
@@ -270,7 +269,9 @@ console.log(olderfilm())
 
 // come andrebbe fatto
 const oldestMovie = (array) => {
-  let result = { Year: 2100 }
+  let result = {
+    Year: 2100
+  }
   array.forEach((movie) => {
     let currentYear = parseInt(movie.Year)
     if (currentYear < result.Year) {
@@ -299,18 +300,70 @@ console.log(numberoffilms(movies))
   Scrivi una funzione per creare un array con solamente i titoli dei film contenuti nell'array fornito.
 */
 
+const booh = (r) => {
+  return r.map((b) => {
+    return b.Title
+  })
+}
+
+
+console.log(booh(movies))
+
 /* ESERCIZIO 12 (filter)
   Scrivi una funzione per ottenere dall'array fornito solamente i film usciti nel millennio corrente.
 */
+
+const onlyInThisMillennium = (array) => {
+  return array.filter((movie) => {
+    return parseInt(movie.Year) >= 2000
+  })
+}
+
+console.log(onlyInThisMillennium(movies))
+
+
 
 /* ESERCIZIO 13 (reduce)
   Scrivi una funzione per calcolare la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array fornito.
 */
 
+const  sumAllFilm = (array) => {
+  return array.reduce((acc,curValue) => 
+  acc + parseInt(curValue.Year), 0)
+}
+console.log(sumAllFilm(movies))
+
 /* ESERCIZIO 14 (find)
   Scrivi una funzione per ottenere dall'array fornito uno specifico film (la funzione riceve un imdbID come parametro).
 */
 
+// const filmWithImdb = (array,id) => {
+//   return array.find( (e) => e.imdbID === id)
+// }
+// console.log(filmWithImdb(movies,"tt2395427"))
+
+// --------------------------------------------------------oppure come farei io, con un solo parametro input
+
+const filmWithImdb = (str) => {
+  return movies.find( (e) => e.imdbID === str )
+}
+
+
+console.log(filmWithImdb("tt4154796"))
+
 /* ESERCIZIO 15 (findIndex)
   Scrivi una funzione per ottenere dall'array fornito l'indice del primo film uscito nell'anno fornito come parametro.
 */
+
+
+// const getMovieByYear = function (array, year) {
+//   return array.findIndex((elem) => parseInt(elem.Year) === year)
+// }
+// console.log(getMovieByYear(movies, 2012))
+
+// --------------------------------------------------------oppure come farei io, con un solo parametro input
+
+const yearIndex = (y) => {
+  return movies.findIndex( (i) => i.Year === y)
+}
+console.log(yearIndex("2005"))
